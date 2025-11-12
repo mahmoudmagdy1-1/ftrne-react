@@ -13,7 +13,7 @@ export const Navbar = () => {
           <CiForkAndKnife size={32} />
         </Link>
         <div className="flex gap-4">
-          <Link to={"/orders/new"}>Quick Order</Link>
+          <Link to={"/orders/new"}>New Order</Link>
           <Link to={"/orders"}>Past Orders</Link>
         </div>
       </nav>
