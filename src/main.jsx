@@ -3,12 +3,14 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router";
-import Navbar from "./components/Navbar.jsx";
+import { AppDataProvider } from "./context/AppDataContext";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <AppDataProvider>
+        <App />
+      </AppDataProvider>
     </BrowserRouter>
   </StrictMode>
 );

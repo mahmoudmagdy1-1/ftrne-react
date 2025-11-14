@@ -1,4 +1,3 @@
-import React from "react";
 import { CiForkAndKnife } from "react-icons/ci";
 import { Link } from "react-router";
 
@@ -13,8 +12,7 @@ export const Navbar = () => {
           <CiForkAndKnife size={32} />
         </Link>
         <div className="flex gap-4">
-          <Link to={"/orders/new"}>New Order</Link>
-          <Link to={"/orders"}>Past Orders</Link>
+          <Link to={"/orders/new"}>Create Order</Link>
         </div>
       </nav>
     </div>

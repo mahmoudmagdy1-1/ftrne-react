@@ -1,13 +1,36 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
+import AppDataContext from "../context/AppDataContext";
 
-function AddRestaurantModal() {
-  const [open, setOpen] = useState(true);
+function AddRestaurantModal({ open, setOpen }) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!restaurantName.trim()) {
+      setError("Restaurant name is required");
+      return;
+    }
+    setIsSubmitting(true);
+    setError(null);
+    try {
+      await addRestaurant(restaurantName.trim());
+      setRestaurantName("");
+      setOpen(false);
+    } catch (err) {
+      setError("Failed to add restaurant.");
+      console.log(err);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  const { addRestaurant } = useContext(AppDataContext);
+  const [restaurantName, setRestaurantName] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   return (
     <div>
@@ -32,38 +55,43 @@ function AddRestaurantModal() {
                     >
                       Add Restaurant
                     </DialogTitle>
-                    <form action="">
+                    <form onSubmit={handleSubmit}>
                       <div className="flex gap-4 items-center">
-                        <label htmlFor="name" className="">
+                        <label htmlFor="restaurantName" className="">
                           Restaurant Name:
                         </label>
                         <input
                           type="text"
-                          id="name"
-                          name="name"
+                          id="restaurantName"
+                          value={restaurantName}
+                          onChange={(e) => setRestaurantName(e.target.value)}
+                          placeholder="Enter restaurant name eg. 7rb"
+                          disabled={isSubmitting}
+                          required
                           className="border border-white rounded-lg outline-none w-full px-2 sm:pr-8 py-2 focus:border-amber-900 "
                         />
+                        {error && <p>{error}</p>}
+                      </div>
+                      <div className="px-8 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="inline-flex w-full justify-center rounded-md cursor-pointer bg-amber-500 px-3 py-2 text-sm font-semibold text-white hover:bg-amber-900 sm:ml-3 sm:w-auto"
+                        >
+                          Add
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setOpen(false)}
+                          data-autofocus
+                          className="mt-3 inline-flex w-full justify-center cursor-pointer rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white inset-ring inset-ring-white/5 hover:bg-white/20 sm:mt-0 sm:w-auto"
+                        >
+                          Cancel
+                        </button>
                       </div>
                     </form>
                   </div>
                 </div>
-              </div>
-              <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="inline-flex w-full justify-center rounded-md cursor-pointer bg-amber-500 px-3 py-2 text-sm font-semibold text-white hover:bg-amber-900 sm:ml-3 sm:w-auto"
-                >
-                  Add
-                </button>
-                <button
-                  type="button"
-                  data-autofocus
-                  onClick={() => setOpen(false)}
-                  className="mt-3 inline-flex w-full justify-center cursor-pointer rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white inset-ring inset-ring-white/5 hover:bg-white/20 sm:mt-0 sm:w-auto"
-                >
-                  Cancel
-                </button>
               </div>
             </DialogPanel>
           </div>
