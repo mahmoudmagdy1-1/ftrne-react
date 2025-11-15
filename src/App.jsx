@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <main className="container mx-auto py-12">
+      <main className="container mx-auto px-4 py-12">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/orders/new" element={<NewOrder />} />

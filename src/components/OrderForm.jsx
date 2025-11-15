@@ -187,9 +187,7 @@ const OrderForm = () => {
             type="number"
             id="quantity"
             value={quantity}
-            onChange={(e) =>
-              setQuantity(Math.max(1, parseInt(e.target.value) || 1))
-            }
+            onChange={(e) => setQuantity(parseInt(e.target.value))}
             min="1"
             disabled={!isItemsEnabled}
             className="border border-white rounded-lg outline-none px-4 py-2 focus:border-amber-900 w-24 bg-gray-700 text-white disabled:opacity-50"

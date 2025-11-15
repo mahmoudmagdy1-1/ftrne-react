@@ -108,14 +108,14 @@ const OrderFilterPerson = () => {
         <table className="w-full text-left">
           <thead>
             <tr className="border-b border-gray-700">
-              <th className="pb-3 text-amber-500">Person Name</th>
-              <th className="pb-3 text-amber-500">Item</th>
-              <th className="pb-3 text-amber-500">Quantity</th>
-              <th className="pb-3 text-amber-500">Subtotal</th>
-              <th className="pb-3 text-amber-500">Paid</th>
-              <th className="pb-3 text-amber-500">Total</th>
-              <th className="pb-3 text-amber-500">Restaurant</th>
-              <th className="pb-3 text-amber-500"></th>
+              <th className="pb-3 px-2 sm:px-4 text-amber-500">Person Name</th>
+              <th className="pb-3 px-2 sm:px-4 text-amber-500">Item</th>
+              <th className="pb-3 px-2 sm:px-4 text-amber-500">Quantity</th>
+              <th className="pb-3 px-2 sm:px-4 text-amber-500">Subtotal</th>
+              <th className="pb-3 px-2 sm:px-4 text-amber-500">Paid</th>
+              <th className="pb-3 px-2 sm:px-4 text-amber-500">Total</th>
+              <th className="pb-3 px-2 sm:px-4 text-amber-500">Restaurant</th>
+              <th className="pb-3 px-2 sm:px-4 text-amber-500"></th>
             </tr>
           </thead>
 
@@ -130,22 +130,26 @@ const OrderFilterPerson = () => {
                     {itemIndex === 0 && (
                       <td
                         rowSpan={group.items.length}
-                        className="py-3 align-top text-white"
+                        className="py-3 px-2 sm:px-4 align-top text-white"
                       >
                         {group.personName}
                       </td>
                     )}
 
-                    <td className="py-3 text-gray-300">{item.name}</td>
-                    <td className="py-3 text-gray-300">{item.quantity}</td>
-                    <td className="py-3 text-amber-500">
+                    <td className="py-3 px-2 sm:px-4 text-gray-300">
+                      {item.name}
+                    </td>
+                    <td className="py-3 px-2 sm:px-4 text-gray-300">
+                      {item.quantity}
+                    </td>
+                    <td className="py-3 px-2 sm:px-4 text-amber-500">
                       {item.total.toFixed(2)}
                     </td>
 
                     {itemIndex === 0 && (
                       <td
                         rowSpan={group.items.length}
-                        className="py-3 align-top"
+                        className="py-3 px-2 sm:px-4 align-top"
                       >
                         <input
                           type="number"
@@ -161,13 +165,13 @@ const OrderFilterPerson = () => {
                       </td>
                     )}
 
-                    <td className="py-3"></td>
+                    <td className="py-3 px-2 sm:px-4"></td>
 
-                    <td className="py-3 text-gray-400 text-sm">
+                    <td className="py-3 px-2 sm:px-4 text-gray-400 text-sm">
                       {item.restaurantName}
                     </td>
 
-                    <td className="py-3">
+                    <td className="py-3 px-2 sm:px-4">
                       <button
                         onClick={() =>
                           handleRemoveItem(group.personName, item.orderIds)
@@ -186,13 +190,13 @@ const OrderFilterPerson = () => {
                     key={`${group.personName}-subtotal`}
                     className="border-b-2 border-gray-700 bg-gray-800/50"
                   >
-                    <td colSpan="3" className="py-2"></td>
-                    <td className="py-2"></td>
-                    <td className="py-2"></td>
-                    <td className="py-2 text-amber-500 font-bold">
+                    <td colSpan="3" className="py-2 px-2 sm:px-4"></td>
+                    <td className="py-2 px-2 sm:px-4"></td>
+                    <td className="py-2 px-2 sm:px-4"></td>
+                    <td className="py-2 px-2 sm:px-4 text-amber-500 font-bold">
                       {group.subtotal.toFixed(2)}
                     </td>
-                    <td colSpan="2" className="py-2"></td>
+                    <td colSpan="2" className="py-2 px-2 sm:px-4"></td>
                   </tr>
                 )}
 
@@ -209,12 +213,12 @@ const OrderFilterPerson = () => {
             <tr className="border-t-2 border-amber-500">
               <td
                 colSpan="3"
-                className="pt-4 text-right text-white font-bold"
+                className="pt-4 px-2 sm:px-4 text-right text-white font-bold"
               ></td>
-              <td className="pt-4 text-amber-500 font-bold">
+              <td className="pt-4 px-2 sm:px-4 text-amber-500 font-bold">
                 {grandTotal.toFixed(2)}
               </td>
-              <td className="pt-4 text-amber-500 font-bold">
+              <td className="pt-4 px-2 sm:px-4 text-amber-500 font-bold">
                 {totalPaid.toFixed(2)}
               </td>
               <td colSpan="3"></td>
